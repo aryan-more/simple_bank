@@ -13,8 +13,32 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+
+    services:
+    
+      postgres:
+      
+        image: postgres:14
+        
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: P35Bxzz6K
+          POSTGRES_DB: simple_bank
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
+
     - uses: actions/checkout@v3
+
+    - name: Install Migrate 
+      run: $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$os-$arch.tar.gz | tar xvz
+
+    - name: Migrate DB 
+      run: make migrateup
 
     - name: Set up Go
       uses: actions/setup-go@v3

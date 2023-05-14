@@ -20,4 +20,7 @@ migratedown:
 migratedown-docker:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down 
 
+test:
+	go test -v -cover ./...
+
 .PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker

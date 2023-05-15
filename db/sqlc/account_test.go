@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"aryanmore.eu.org/simple_bank/util"
+	"github.com/aryan-more/simple_bank/util"
 	"github.com/stretchr/testify/require"
 )
 

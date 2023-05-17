@@ -8,16 +8,16 @@ import (
 
 	"github.com/aryan-more/simple_bank/api"
 	db "github.com/aryan-more/simple_bank/db/sqlc"
-)
-
-const (
-	dbDriver = "postgres"
-	dbSource = "postgresql://postgres:P35Bxzz6K@localhost:5432/simple_bank?sslmode=disable"
-	address  = "0.0.0.0:8080"
+	"github.com/aryan-more/simple_bank/util"
 )
 
 func main() {
-	conn, err := sql.Open(dbDriver, dbSource)
+	config, err := util.LoadConfig(".")
+	if err != nil {
+		log.Fatalln("Cannot load config:", err)
+	}
+
+	conn, err := sql.Open(config.DBDriver, config.DBSource)
 	// gin.SetMode(gin.ReleaseMode)
 	if err != nil {
 		log.Fatal("Cannot connect to db:", err)
@@ -29,7 +29,7 @@ func main() {
 
 	server := api.NewServer(store)
 
-	err = server.Start(address)
+	err = server.Start(config.Address)
 	if err != nil {
 		log.Fatal("Cannot Start Server:", err)
 	} else {

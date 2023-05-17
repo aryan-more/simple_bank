@@ -31,5 +31,5 @@ func errorResponse(err error) gin.H {
 }
 
 func (server *Server) Start(address string) error {
-	return server.router.Run()
+	return server.router.Run(address)
 }

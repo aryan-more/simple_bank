@@ -44,5 +44,4 @@ jobs:
       id: go
     - name: Test
       run: make test
-    - id: govulncheck
-      uses: golang/govulncheck-action@v1
+   

@@ -22,7 +22,7 @@ func TestTransferTx(t *testing.T) {
 
 	fmt.Println(">>Before ", account1.Balance, account2.Balance)
 	for i := 0; i < n; i++ {
-		go func(store *Store) {
+		go func(store *SQLStore) {
 			ctx := context.Background()
 			result, err := store.TransferTX(ctx, TransferTxParams{
 				FromAccountID: account1.ID,

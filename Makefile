@@ -1,10 +1,12 @@
 createdb:
 	createdb --username=postgres --owner=postgres simple_bank
+	
 createdb-docker:
 	docker exec -it postgres createdb --username=root --owner=root simple_bank
 
 dropdb:
 	dropdb -U postgres simple_bank
+
 dropdb-docker:
 	docker exec -it postgres dropdb -U root simple_bank
 
@@ -26,4 +28,7 @@ test:
 server:
 	go run main.go
 
-.PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker
+mock:
+	mockgen -destination db/mock/store.go -package mockdb github.com/aryan-more/simple_bank/db/sqlc Store 
+
+.PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker mock

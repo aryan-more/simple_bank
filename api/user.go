@@ -2,6 +2,7 @@ package api
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -97,6 +98,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 
 	req := bindJson[logInUserRequest](ctx)
 	if req == nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(errors.New("Bad")))
 		return
 	}
 

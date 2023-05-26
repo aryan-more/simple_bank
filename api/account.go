@@ -2,7 +2,6 @@ package api
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 
 	db "github.com/aryan-more/simple_bank/db/sqlc"
@@ -32,7 +31,6 @@ func (server *Server) createAccount(ctx *gin.Context) {
 	if err != nil {
 		pqErr, ok := err.(*pq.Error)
 		if ok {
-			fmt.Println(pqErr.Code.Name())
 			switch pqErr.Code.Name() {
 			case "foreign_key_violation", "unique_violation":
 				ctx.JSON(http.StatusForbidden, errorResponse(err))

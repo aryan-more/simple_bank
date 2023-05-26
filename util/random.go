@@ -10,7 +10,6 @@ import (
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 func init() {
-	fmt.Println("Booted")
 	rand.Seed(time.Now().UnixNano())
 }
 

@@ -27,13 +27,10 @@ type createUserMatcher struct {
 
 // Matches returns whether x is a match.
 func (c createUserMatcher) Matches(x interface{}) bool {
-	fmt.Println("Match")
 	user, ok := x.(db.CreateUserParams)
 	if !ok {
 		return false
 	}
-	fmt.Println(c.arg)
-	fmt.Println(user)
 
 	if err := util.CheckedPassword(c.password, user.HashedPassword); err != nil {
 		return false

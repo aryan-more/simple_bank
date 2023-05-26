@@ -3,7 +3,6 @@ package api
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -63,7 +62,6 @@ func (server *Server) createUser(ctx *gin.Context) {
 	if err != nil {
 		pqErr, ok := err.(*pq.Error)
 		if ok {
-			fmt.Println(pqErr.Code.Name())
 			switch pqErr.Code.Name() {
 			case "unique_violation":
 				ctx.JSON(http.StatusForbidden, errorResponse(err))

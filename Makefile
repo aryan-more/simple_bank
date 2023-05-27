@@ -43,4 +43,7 @@ server:
 mock:
 	mockgen -destination db/mock/store.go -package mockdb github.com/aryan-more/simple_bank/db/sqlc Store 
 
+sqlc:
+	sqlc generate
+
 .PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker mock migrateup1 migrateup-docker1 migratedown1 migratedown-docker1

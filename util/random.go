@@ -18,6 +18,11 @@ func RandomInt(min, max int64) int64 {
 	return min + rand.Int63n(max-min+1)
 }
 
+func RandomChoice[T any](array []T) T {
+	index := rand.Intn(len(array))
+	return array[index]
+}
+
 // RandomString generates a random string of length n
 func RandomString(n int) string {
 	var sb strings.Builder

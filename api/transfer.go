@@ -36,7 +36,7 @@ func (server *Server) createTransfer(ctx *gin.Context) {
 
 	if !valid {
 		err := errors.New("invalid currency")
-		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
 
@@ -44,7 +44,7 @@ func (server *Server) createTransfer(ctx *gin.Context) {
 
 	if !valid {
 		err := errors.New("invalid currency")
-		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
 

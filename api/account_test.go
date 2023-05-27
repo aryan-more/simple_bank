@@ -486,10 +486,6 @@ func randomAccountWithCurrency(owner string, currency string) db.Account {
 	}
 }
 
-func randomCurrency() string {
-	return util.RandomChoice[string](util.ValidCurrencies)
-}
-
 func randomAccountZeroBalance(owner string) db.Account {
 	return db.Account{
 		ID:        util.RandomInt(1, 1000),

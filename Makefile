@@ -46,4 +46,10 @@ mock:
 sqlc:
 	sqlc generate
 
+postgres:
+	docker run --name postgres --network bank-network -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=P35Bxzz6K -d postgres:15.3-alpine
+
+rundocker:
+	docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_URL=postgresql://postgres:P35Bxzz6K@postgres:5432/simple_bank?sslmode=disable
+
 .PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker mock migrateup1 migrateup-docker1 migratedown1 migratedown-docker1

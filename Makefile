@@ -52,4 +52,11 @@ postgres:
 rundocker:
 	docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_URL=postgresql://postgres:P35Bxzz6K@postgres:5432/simple_bank?sslmode=disable
 
+recreate_compose:
+	docker compose down
+	docker rmi simple_bank-api
+	docker compose up
+
+
+
 .PHONY: createdb createdb-docker dropdb dropdb-docker migrateup migrateup-docker migratedown migratedown-docker mock migrateup1 migrateup-docker1 migratedown1 migratedown-docker1
